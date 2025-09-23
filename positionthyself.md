@@ -3,7 +3,7 @@
 
 # Position Thy Self
 This challenge teaches the concept of the current working directory in Linux and how to change it using the cd command.
-Every proces operates in a directory it is currently in. The prompt often displays this directory to the user (e.g., ~ represents the home directory).
+Every process (like the bash shell) operates in a directory it is currently “hanging out” in. The prompt often displays this directory to the user (e.g., ~ represents the home directory).
 To move between directories, we use the cd command with the path to the target directory.
 
 ### Solve
