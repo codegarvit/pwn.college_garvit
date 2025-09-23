@@ -2,20 +2,29 @@
 # Hello Hackers
 
 # Intro to Commands
-This challenge serves as the first introduction to invoking commands in the pwn.college dojo. The goal is to run a specific command, `hello`, to obtain the flag.
+The challenge asks you to open the terminal in the pwn.college DOJO and run the hello command with a specific argument (hackers) to obtain the flag. The exercise demonstrates how commands can take arguments and how those arguments affect the command output.
 
 ### Solve
 **Flag:** `pwn.college{0Efq54Mttd329QM4X6nDfJCFH28.QX3YjM1wSN0AzNzEzW}`
 
-In this challenge, the task was to run the very first Linux command inside the pwn.college DOJO terminal. The instructions explained that typing a command and pressing Enter would execute it and display its output.
-
-The example given was whoami, which simply prints the current username (hacker).
-For this challenge, we needed to run the hello command to retrieve the flag.
+To solve the challenge, I first experimented with the echo command, which simply prints its arguments back onto the terminal. For example, running echo Hello outputs "Hello" while echo Hello Hackers! outputs "Hello Hackers!". Finally, I used the required hello command with the single argument hackers, which successfully returned the flag.
 
 ```
-hacker@hello~intro-to-commands:~$ whoami
-hacker
-hacker@hello~intro-to-commands:~$ hello
+hacker@hello~intro-to-arguments:~$ echo Hello
+Hello
+hacker@hello~intro-to-arguments:~$ echo Hello Hackers!
+Hello Hackers!
+hacker@hello~intro-to-arguments:~$ hello hackers
 Success! Here is your flag:
-pwn.college{0Efq54Mttd329QM4X6nDfJCFH28.QX3YjM1wSN0AzNzEzW}
+pwn.college{ED8dTHsJ__ETgzgZ0Py5_W8621V.QX4YjM1wSN0AzNzEzW}
 ```
+    
+### New Learnings
+I learned the concept of arguments in Linux commands:
+
+1. The first word is the command, and everything after it is treated as an argument.
+2. Commands like echo simply repeat their arguments back as output.
+3. Some commands require specific arguments (like hello hackers) to execute successfully.
+
+### References 
+None
