@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# Hello Hackers
+# Pondering Paths
 
 # The Root
 This challenge introduces the concept of the filesystem hierarchy in Linux and the idea of using absolute paths to run programs. In Linux, the filesystem starts at / (root), which contains all other directories, configuration files, programs, and important resources.
