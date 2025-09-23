@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Hello Hackers
 
-# Intro to Commands
+# Intro to Arguments
 The challenge asks you to open the terminal in the pwn.college DOJO and run the hello command with a specific argument (hackers) to obtain the flag. The exercise demonstrates how commands can take arguments and how those arguments affect the command output.
 
 ### Solve
