@@ -11,11 +11,11 @@ Absolute paths always start with / and resolve independently of the current work
 The task: execute the challenge binary using a relative path that explicitly includes . in its path expression.
 
 1. Ensure the current working directory is root (/).
-```
+```bash
 hacker@paths~explicit-relative-paths-from-:~$ cd /
 ```
 2. From /, invoke the program using a relative path with .
-```
+```bash
 hacker@paths~explicit-relative-paths-from-:/$ ./challenge/run
 Correct!!!
 ./challenge/run is a relative path, invoked from the right directory!

@@ -9,11 +9,11 @@ This challenge contrasts absolute and relative paths. Absolute paths begin at ro
 The task: execute the challenge program using a relative path while the cwd is set to /. The hint indicates the relative path begins with the letter c, pointing to challenge/run.
 
 1. Ensure the current working directory is root (/).
-```
+```bash
 hacker@paths~implicit-relative-paths-from-:~$ cd /
 ```
 2. From /, invoke the program using a relative path that starts with c — i.e., challenge/run.
-```
+```bash
 hacker@paths~implicit-relative-paths-from-:/$ challenge/run
 Correct!!!
 challenge/run is a relative path, invoked from the right directory!

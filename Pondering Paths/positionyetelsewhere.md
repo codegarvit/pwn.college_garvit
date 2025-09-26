@@ -11,11 +11,11 @@ To move between directories, we use the cd command with the path to the target d
 
 In this challenge, we need to navigate (cd) to the directory specified by the challenge and then run the /challenge/run program from there.
 1. First, move to the directory specified by the challenge:
-```
+```bash
 hacker@paths~position-yet-elsewhere:~$ cd /usr/include
 ```
 2. Once inside the correct directory, run the challenge program:
-```
+```bash
 hacker@paths~position-yet-elsewhere:/usr/include$ /challenge/run
 Correct!!!
 /challenge/run is an absolute path, invoked from the right directory!

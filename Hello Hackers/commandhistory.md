@@ -9,7 +9,7 @@ The challenge introduces the concept of command history in Linux shells. Every c
 
 To solve the challenge, I opened the terminal in the pwn.college DOJO. The flag had already been injected into my command history by the challenge setup. By pressing the up arrow key, I was able to scroll through the history until I found the command containing the flag. Executing it revealed the flag successfully.
 
-```
+```bash
 hacker@hello~command-history:~$(up key pressed) the flag is pwn.college{EndsaGJNUNtWfD7EcmK0NtKYM0s.0lNzEzNxwSN0AzNzEzW}
 ```
     

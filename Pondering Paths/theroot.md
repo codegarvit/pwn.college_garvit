@@ -8,7 +8,8 @@ This challenge introduces the concept of the filesystem hierarchy in Linux and t
 **Flag:** `pwn.college{cR-uJzXqgXI-BxbmD516UtzMwyL.QX4cTO0wSN0AzNzEzW}`
 In this exercise, a program called pwn is placed directly inside the / directory. The task is to invoke it using its absolute path and capture the flag.
 To solve the challenge, I launched the terminal and executed the program by providing its full path starting from the root directory.Since the program was located at /pwn, I ran:
-```
+
+```bash
 hacker@paths~the-root:~$ /pwn
 BOOM!!!
 Here is your flag:

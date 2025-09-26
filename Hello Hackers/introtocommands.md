@@ -12,7 +12,7 @@ In this challenge, the task was to run the very first Linux command inside the p
 The example given was whoami, which simply prints the current username (hacker).
 For this challenge, we needed to run the hello command to retrieve the flag.
 
-```
+```bash
 hacker@hello~intro-to-commands:~$ whoami
 hacker
 hacker@hello~intro-to-commands:~$ hello

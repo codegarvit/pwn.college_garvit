@@ -18,7 +18,7 @@ The Solution
 2. It is three characters long (~, /, a).
 3. The shell expands the ~ to /home/hacker, making the final path /home/hacker/a. This is an absolute path and is inside your home directory.
 Therefore, running the following command:
-```
+```bash
 hacker@paths~home-sweet-home:~$ /challenge/run ~/a
 Writing the file to /home/hacker/a!
 ... and reading it back to you:

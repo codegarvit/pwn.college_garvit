@@ -10,11 +10,11 @@ Instead, to tell Linux to execute a program in the current directory, you must p
 The task: run the challenge binary from /challenge, explicitly telling Linux to look in the current directory.
 
 1. Navigate into the /challenge directory:
-```
+```bash
 hacker@paths~implicit-relative-path:~$ cd /challenge
 ```
 2. explicitly execute the program using ./run:
-```
+```bash
 hacker@paths~implicit-relative-path:/challenge$ ./run
 Correct!!!
 ./run is a relative path, invoked from the right directory!

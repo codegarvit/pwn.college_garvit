@@ -9,7 +9,8 @@ This challenge introduces the concept of absolute paths in Linux. Instead of run
 
 In this level, the challenge program is named run, and it resides in the /challenge directory, which itself is directly inside the root directory (/). 
 To solve the challenge, I executed the program using its absolute path:
-```
+
+```bash
 hacker@paths~program-and-absolute-paths:~$ /challenge/run
 Correct!!!
 /challenge/run is an absolute path! Here is your flag:
