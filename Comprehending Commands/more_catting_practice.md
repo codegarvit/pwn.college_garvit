@@ -2,25 +2,28 @@
 # Comprehending Commands
 
 # Cat:  Not the Pet,but the Command!
-The challenge illustrates the uses of the cat command.The primary purpose of cat is to read the contents of files and display them in the terminal.
-It can also concatenate multiple files and show them sequentially, or even read from the terminal if no file is given.
+This challenge is similar to the previous one, but the flag is placed in a "crazy directory" with a complex path. The ability to change directories using cd is disabled, forcing the use of cat with an absolute path. The path to the flag is revealed when the challenge starts.
 
 ### Solve
-**Flag:** `pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}`
+**Flag:** `pwn.college{IJJuluY9bMj8uLLuGYEKknA_0G4.QXwITO0wSN0AzNzEzW}`
 
-To solve this challenge, the task was to read the contents of a file called flag that was placed in the home directory. The cat command was used to display the file’s contents, successfully returning the flag.
+The main constraint here is that the cd command is disabled. This means you cannot navigate into the directory where the flag is located.
+
+When the challenge starts, it prints the full, absolute path to the flag file. For example, it might print /path/to/a/very/deep/flag_file.
+
+Your goal is to read this file. Since you cannot cd into the /path/to/a/very/deep/ directory, you cannot use a simple relative command like cat flag_file.
+
+The only viable method is to give the cat command the exact, absolute path that the challenge provided you. You simply need to copy the path and use it as an argument for cat.
 
 ```bash
-hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
-pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}
+hacker@commands~more-catting-practice:~$ cat /usr/lib/git-core/flag
+pwn.college{IJJuluY9bMj8uLLuGYEKknA_0G4.QXwITO0wSN0AzNzEzW}
 ```
     
-### New Learnings
+### New Learning
+Even without the ability to cd into a directory, you can still access files inside it using their absolute paths.
 
-I learned the following concepts about the cat command in Linux:
-1. Cat displays the contents of files directly in the terminal.
-2. Multiple files can be provided as arguments, and their contents will be concatenated in order.
-3. If no arguments are given, cat will read from the terminal input and output it.
+This reinforces the concept that commands can operate on any file in the file system, not just those in the immediate vicinity.
 
 ### References 
 None
