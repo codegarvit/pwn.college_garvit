@@ -1,26 +1,35 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Cat:  Not the Pet,but the Command!
-The challenge illustrates the uses of the cat command.The primary purpose of cat is to read the contents of files and display them in the terminal.
-It can also concatenate multiple files and show them sequentially, or even read from the terminal if no file is given.
+# Making Directories
+This challenge introduces the mkdir command, used for creating new directories (folders) in the filesystem. The task is to first create a directory named pwn inside the /tmp directory, and then create a file named college inside that new directory. Finally, a verification script must be run to get the flag.
 
 ### Solve
-**Flag:** `pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}`
+**Flag:** `pwn.college{0wrPz9stubo9lDWznMNjTSx_igH.QXxMDO0wSN0AzNzEzW}`
 
-To solve this challenge, the task was to read the contents of a file called flag that was placed in the home directory. The cat command was used to display the file’s contents, successfully returning the flag.
+The solution requires a sequence of three commands: one to create the directory, one to create the file in the correct location, and one to run the checker.
+
+1. Create the Directory: The mkdir command is used with the absolute path /tmp/pwn to create the required directory.
+
+2. Create the File: The touch command is used to create the college file. Crucially, the path must specify that the file goes inside the newly created /tmp/pwn directory.
+
+3. Get the Flag: The provided checker script is run, which verifies that both the directory and the file exist in the correct locations before awarding the flag.
 
 ```bash
-hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
-pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}
+hacker@commands~making-directories:~$ mkdir /tmp/pwn
+hacker@commands~making-directories:~$ touch /tmp/pwn/college
+hacker@commands~making-directories:~$ /challenge/run
+Success! Here is your flag:
+pwn.college{0wrPz9stubo9lDWznMNjTSx_igH.QXxMDO0wSN0AzNzEzW} 
 ```
     
 ### New Learnings
 
-I learned the following concepts about the cat command in Linux:
-1. Cat displays the contents of files directly in the terminal.
-2. Multiple files can be provided as arguments, and their contents will be concatenated in order.
-3. If no arguments are given, cat will read from the terminal input and output it.
+1. The mkdir Command: The primary lesson is the use of mkdir <path> to create new directories in the filesystem.
+
+2. Hierarchical Structure: This exercise demonstrates the nested nature of filesystems, where you can create directories and then place files or other directories inside them.
+
+3. Path Specificity: Solving the challenge correctly requires using precise absolute paths to ensure both the directory and the file are created in the exact locations the verification script expects.
 
 ### References 
 None

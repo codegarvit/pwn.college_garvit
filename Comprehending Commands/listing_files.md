@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Catting Absolute Paths
+# Listing Files
 This challenge teaches how to list the contents of a directory. A file with a random name has been placed inside /challenge. The goal is to use the ls command to find the name of this file.
 
 ### Solve
@@ -23,11 +23,10 @@ pwn.college{UNqZYkzsYkt1j-5D9wecAQNrboq.QX5ETO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
-The ls command lists the contents of a directory.
 
-If you provide a path as an argument (e.g., ls /challenge), it lists the contents of that directory.
-
-If no arguments are given, ls lists the contents of the current working directory.
+1. The ls command lists the contents of a directory.
+2. If you provide a path as an argument (e.g., ls /challenge), it lists the contents of that directory.
+3. If no arguments are given, ls lists the contents of the current working directory.
 
 ### References 
 None
