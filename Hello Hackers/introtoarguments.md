@@ -24,12 +24,9 @@ pwn.college{ED8dTHSj__ETgZgz0Py5_W8621V.QX4YjM1wSN0AzNzEzW}
 
 ### New Learnings
 I learned the concept of arguments in Linux commands:
-
-The first word is the command, and everything after it is treated as an argument.
-
-Commands like echo simply repeat their arguments back as output.
-
-Some commands require specific arguments (like hello hackers) to execute successfully.
+1. The first word is the command, and everything after it is treated as an argument.
+2. Commands like echo simply repeat their arguments back as output.
+3. Some commands require specific arguments (like hello hackers) to execute successfully.
 
 References
 None
