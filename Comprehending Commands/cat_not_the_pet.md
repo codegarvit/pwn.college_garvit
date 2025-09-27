@@ -10,7 +10,7 @@ It can also concatenate multiple files and show them sequentially, or even read 
 
 To solve this challenge, the task was to read the contents of a file called flag that was placed in the home directory. The cat command was used to display the file’s contents, successfully returning the flag.
 
-```
+```bash
 hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
 pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}
 ```
@@ -20,8 +20,7 @@ pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}
 I learned the following concepts about the cat command in Linux:
 1. Cat displays the contents of files directly in the terminal.
 2. Multiple files can be provided as arguments, and their contents will be concatenated in order.
-
-If no arguments are given, cat will read from the terminal input and output it.
+3. If no arguments are given, cat will read from the terminal input and output it.
 
 ### References 
 None

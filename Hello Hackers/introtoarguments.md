@@ -22,7 +22,7 @@ Success! Here is your flag:
 pwn.college{ED8dTHSj__ETgZgz0Py5_W8621V.QX4YjM1wSN0AzNzEzW}
 ```
 
-New Learnings
+### New Learnings
 I learned the concept of arguments in Linux commands:
 
 The first word is the command, and everything after it is treated as an argument.
