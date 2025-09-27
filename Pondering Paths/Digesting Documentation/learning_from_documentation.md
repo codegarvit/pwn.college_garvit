@@ -2,32 +2,30 @@
 # Digesting Documentation
 
 # Moving Files
-This challenge introduces the mv command, which is used to move or rename files and directories. The task is to move a specific file, located at /flag, to a new destination, /tmp/hack-the-planet. After the file has been moved, a checker script must be run to verify the solution and receive the flag.
+This challenge emphasizes a fundamental skill for using any command-line program: reading its documentation to understand the correct arguments. The task involves a program, /challenge/challenge, which will only yield a flag if run correctly. The challenge description itself provides a small block of "documentation" that explicitly states the required argument.
 
 ### Solve
-**Flag:** `pwn.college{0qPpxLMR1rbxkx0bTdoMtiz30sU.0VOxEzNxwSN0AzNzEzW}`
+**Flag:** `pwn.college{4BDRWBpyp8kqW5PTa3SkfOKGSzY.QX0ITO0wSN0AzNzEzW}`
 
-The solution requires two commands: one to perform the move operation and another to run the verification script.
+The solution is a direct application of the information provided in the challenge's "documentation" block.
+1. Read the Documentation: The prompt contains the key to the solution:
+"To properly run this program, you will need to pass it the argument of --giveflag."
 
-1. Move the File: The mv command is used with the source and destination paths. The source is the original file (/flag), and the destination is the new location and name (/tmp/hack-the-planet).
-
-2. Get the Flag: The checker script is run. It confirms that the file is no longer at /flag and now exists at /tmp/hack-the-planet, then prints the flag.
+2. Execute the Command: The program is run with the exact argument specified. It's crucial to be precise, as a common mistake is to type --give-flag (with a hyphen) instead of the correct --giveflag (one word).
 
 ```bash
-hacker@commands~moving-files:~$ mv /flag /tmp/hack-the-planet
-Correct! Performing 'mv /flag /tmp/hack-the-planet'.
-hacker@commands~moving-files:~$ /challenge/check
-Congrats! You successfully moved the flag to /tmp/hack-the-planet! Here it is:
-pwn.college{0qPpxLMR1rbxkx0bTdoMtiz30sU.0VOxEzNxwSN0AzNzEzW}
+hacker@man~learning-from-documentation:~$ /challenge/challenge --giveflag
+Correct argument! Here is your flag:
+pwn.college{4BDRWBpyp8kqW5PTa3SkfOKGSzY.QX0ITO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
 
-1. The mv Command: The core lesson is the syntax and function of mv <source> <destination>. This command is a fundamental utility for organizing files.
+1. Documentation is Key: The primary lesson is that the first step to understanding an unfamiliar program is to check its documentation (such as --help output, man pages, or a README file).
 
-2. Moving and Renaming: The mv command can perform two related actions. If the destination is an existing directory, the source file is moved into it. If the destination is a new path with a new filename (as in this challenge), the file is moved and renamed in a single step.
+2. Precision Matters: This challenge highlights that command-line arguments must be typed exactly as specified. A minor typo, like an extra hyphen or a spelling mistake, will often cause the program to fail or behave unexpectedly.
 
-3. Filesystem Operations: This challenge provides a practical example of a common filesystem operation—relocating a file from one part of the directory tree to another.
+3. Command-Line Arguments: This is a practical example of how arguments (especially those starting with --, often called "options" or "flags") are used to control a program's execution flow.
 
 ### References 
 None
