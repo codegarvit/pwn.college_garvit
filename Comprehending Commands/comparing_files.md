@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Cat:  Not the Pet,but the Command!
+# Comparing Files
 There are two files: /challenge/decoys_only.txt (containing 100 fake flags) and /challenge/decoys_and_real.txt (containing the same 100 fake flags plus one real flag). The task is to find the single line that is different between these two files to isolate the real flag.
 
 ### Solve
