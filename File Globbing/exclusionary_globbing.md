@@ -1,34 +1,34 @@
 # pwn.college_garvit
 # File GLobbing
 
-# Matching With []
-This challenge introduces globbing with square brackets ([]), which is used to match any single character from a specified set. The task is to navigate to the /challenge/files directory and then execute the /challenge/run script. This script requires a single argument: a glob pattern using [] that expands to match exactly four files: file_b, file_a, file_s, and file_h.
+# Exclusionary Globbing
+This challenge introduces exclusionary globbing, a feature of the shell that allows you to match files that do not contain certain characters. By placing a ! or ^ as the first character inside a bracket expression ([]), the pattern is inverted. The task is to navigate to the /challenge/files directory and run a verification script with a glob that selects all files except those starting with the letters 'p', 'w', or 'n'.
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{sQikFZIj8Fv8k0uIugEjcH4uZq0.QX2IDO0wSN0AzNzEzW}`
 
-The solution requires creating a precise glob pattern that matches only the target files.
-1. Analyze the Target Filenames: The files to be matched all share a common prefix, file_. The only difference is the final character, which is one of b, a, s, or h.
+The solution requires building a glob pattern that uses the exclusionary syntax to filter the file list.
+1. Identify the Exclusion Set: The characters to be excluded from the first position of the filename are p, w, and n.
 
-2. Construct the Glob Pattern: The square bracket [] syntax is perfect for this situation. By placing the desired characters inside the brackets, we create a pattern that will match any one of them. The resulting pattern is file_[bash].
+2. Construct the Glob Pattern:
+The set of excluded characters is placed inside brackets: [pwn].
+A ! is added as the very first character inside the brackets to invert the match: [!pwn]. This now matches any single character that is not p, w, or n.
+A * is appended to match the rest of any filename that passes the first character check.
+The final pattern is [!pwn]*.
 
-3. Execute the Commands: The first step is to change into the correct directory. The second is to run the verification script with the constructed glob pattern.
-
+3. Execute the Commands: First, change into the correct directory. Then, run the verification script with the exclusionary glob pattern.
 
 
 ```bash
-hacker@globbing~matching-with-:~$ cd /challenge/files
-hacker@globbing~matching-with-:/challenge/files$ /challenge/run file_[bash]
+hacker@globbing~exclusionary-globbing:~$ cd /challenge/files
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [!pwn]*
 You got it! Here is your flag!
-pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}
+pwn.college{sQikFZIj8Fv8k0uIugEjcH4uZq0.QX2IDO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
-1. Character Set Globbing []: The core lesson is the use of square brackets [] to match a single character from a specific list. This allows for more granular control than the ? (any single character) or * (any sequence of characters) globs.
+1. Exclusionary Globbing [!...]: The core lesson is that placing a ! (or ^) at the start of a character set inverts its meaning, matching any character not in the set. This is a powerful technique for filtering out files.
 
-2. Shell Expansion: This challenge reinforces that the shell processes glob patterns before executing the command. It sees the pattern file_[bash], finds all matching files, and substitutes their names into the command line as separate arguments.
-
-3. Combining Literals and Globs: The solution demonstrates how to combine literal text (file_) with glob patterns ([bash]) to create a specific and powerful file-matching rule.
-
+2. Combining Glob Logic: The solution, [!pwn]*, effectively combines two types of globbing: an exclusionary character set for the first character and a wildcard for the rest of the string. This demonstrates the composability of shell patterns.
 ### References 
 None

@@ -5,7 +5,7 @@
 This challenge requires combining different types of globs ([] and *) to create a specific file-matching pattern. The task is to navigate to the /challenge/files directory and execute a verification script, /challenge/run. This script must be passed a single argument: a glob pattern of 6 characters or less that expands to match exactly three files: "challenging", "educational", and "pwning".
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{0SYpRweekIHXV-NvsQdz21_7D55.QX1IDO0wSN0AzNzEzW}`
 
 The solution lies in creating a pattern that is both short and specific enough to match only the three target files.
 1. Analyze the Target Filenames: The target files are challenging, educational, and pwning. A key observation is that their first letters (c, e, p) are unique among the other files in the directory.
