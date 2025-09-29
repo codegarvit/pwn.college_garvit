@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Redirecting Errors
 This challenge introduces the concept of redirecting standard error (stderr) by using its file descriptor number, 2. It explains that commands have separate channels for their normal output (standard output, or stdout, FD 1) and their error or status messages (standard error, or stderr, FD 2). The task is to run the /challenge/run program and, in a single command, redirect its stdout to a file named myflag and its stderr to a file named instructions.

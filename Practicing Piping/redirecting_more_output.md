@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Redirecting More Output
 This challenge demonstrates that output redirection can be used on any command, not just echo. The task is to run a program, /challenge/run, which will only produce the flag if its standard output (stdout) is redirected to a file named myflag. The challenge also explains that the program uses standard error (stderr) for status messages, which is why some text still appears on the terminal during redirection.

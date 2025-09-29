@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Redirecting Output
 This challenge introduces the concept of redirecting a command's standard output (stdout) to a file using the > character. The task is to apply this knowledge to write the word "PWN" into a new file named "COLLEGE".

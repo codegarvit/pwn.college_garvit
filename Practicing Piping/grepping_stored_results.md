@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Grepping Stored Results
 This challenge combines two previously learned skills, output redirection (>) and searching with grep, to demonstrate a common command-line workflow. The goal is to capture the large output of a program in a file and then search that file for the flag.

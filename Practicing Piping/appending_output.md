@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Appending Output
 This challenge introduces the concept of appending output to a file using the >> operator. Unlike the > operator which overwrites a file's contents, >> adds the new output to the end of the file. The task involves a program, /challenge/run, that needs to be executed twice. The first execution writes the first half of the flag to a file, and the second execution outputs the second half. To get the complete flag, the output of the second run must be correctly appended to the first.

@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Redirecting Intput
 This challenge introduces redirecting standard input (stdin) using the < character, which allows a program to read from a file as if it were receiving input from the keyboard. 

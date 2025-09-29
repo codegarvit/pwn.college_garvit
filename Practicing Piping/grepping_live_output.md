@@ -1,5 +1,5 @@
 # pwn.college_garvit
-# File GLobbing
+# Praciting Piping
 
 # Grepping Live Output
 This challenge introduces the pipe operator (|), a core feature of the shell that allows you to connect the output of one command directly to the input of another. This avoids the need for a temporary file, creating a more efficient and elegant workflow.
