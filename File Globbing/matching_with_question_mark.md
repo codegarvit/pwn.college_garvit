@@ -2,31 +2,33 @@
 # File GLobbing
 
 # Matching With ?
-This challenge introduces the asterisk (*) character, a shell feature known as a "glob" or "wildcard." The * can be used in a path to match any sequence of characters. The task is to navigate to the /challenge directory using the cd command. However, the argument passed to cd must be four characters or less and must utilize the * glob.
+This challenge introduces the question mark (?) glob character, which serves as a single-character wildcard in the shell. The task is to navigate to the /challenge directory using the cd command with an argument that utilizes the ? glob. The challenge includes a hidden constraint that the command argument cannot contain the letters 'c' or 'l'.
 
 ### Solve
 **Flag:** `pwn.college{AiO68ChQzwyKd5zWpgmIVrCFzQH.QXxIDO0wSN0AzNzEzW}`
 
-The solution requires finding a short pattern containing the * wildcard that the shell will uniquely expand to the target path /challenge.
+The solution requires constructing a glob pattern that matches /challenge while adhering to all the rules, including the hidden ones.
+1. Discover the Hidden Constraint: An initial, straightforward attempt like cd /?hallenge fails with an error message stating that the characters 'c' and 'l' are disallowed.
 
-1. Formulate the Glob Pattern: A simple and effective pattern to match /challenge is /c*. This pattern is only three characters long, satisfying the length constraint.
+2. Formulate the Correct Pattern: To bypass this constraint, every forbidden character in the target path /challenge must be replaced with the ? wildcard.
+c is replaced with ?
+l is replaced with ?
+l is replaced with ?
+This results in the correct pattern: /?ha??enge.
 
-2. Change Directory: When the command cd /c* is executed, the shell first performs glob expansion. It looks in the root directory (/) for all files or directories that start with the letter "c". In the context of the challenge, /challenge is the only match, so the shell replaces /c* with /challenge before the cd command runs.
-
-3. Get the Flag: After successfully changing into the /challenge directory, the verification script is run to get the flag.
+3. Execute the Commands: The cd command is run with the new pattern. The shell successfully expands this to /challenge. The verification script is then run to obtain the flag.
 
 ```bash
-hacker@globbing~matching-with-:~$ cd /c*
+hacker@globbing~matching-with-:~$ cd /?ha??enge
 hacker@globbing~matching-with-:/challenge$ /challenge/run
 You ran me with the working directory of /challenge! Here is your flag:
-pwn.college{AiO68ChQzwyKd5zWpgmIVrCFzQH.QXxIDO0wSN0AzNzEzW}
-hacker@globbing~matching-with-:/challenge$
+pwn.college{Um-NU_WTTjuKyUVGLivRXX7Cxlo.QXyIDO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
-1. The * Glob: The primary lesson is that the * character acts as a wildcard in the shell, matching any sequence of characters (except for a leading dot). It is a fundamental tool for working with multiple files.
+1. The ? Glob: The core lesson is the function of the ? wildcard, which matches any single character. This contrasts with the * wildcard, which matches any sequence of characters.
 
-2. Shell Expansion: This challenge is a clear demonstration of shell expansion. The shell interprets special characters like * and replaces them with matching filenames before the actual command (cd) is executed.
+2. Adapting to Constraints: The challenge teaches the importance of adapting a solution based on new information. The hidden constraint forces a more creative and thorough application of the globbing concept.
 
 ### References 
 None
