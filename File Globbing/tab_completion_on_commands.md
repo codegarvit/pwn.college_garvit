@@ -1,33 +1,29 @@
 # pwn.college_garvit
 # File GLobbing
 
-# Tab Completion
-This challenge teaches how to handle Tab completion when multiple file or command names match the typed prefix. It explains that in the bash shell, pressing Tab once will auto-complete up to the common part of all matches. Pressing Tab a second time will display a list of all possible completions. The task is to use this "double-tab" technique to navigate a directory structure under /challenge/files, where many files share a common prefix, to find and read the flag file.
+# Tab Completion On Commands
+This challenge demonstrates that Tab completion is a versatile shell feature that works on command names in addition to file paths. The task is to find and execute a command that starts with the prefix pwncollege. The solution requires typing this prefix and then using the Tab key to auto-complete the full command name, which, when run, will print the flag.
 
 ### Solve
-**Flag:** `pwn.college{0x58U0QQIiPMbr_xX6RGZf1_5iz.0lN0EzNxwSN0AzNzEzW}`
-The solution is an iterative process of building the file path by using Tab completion to both complete parts of the name and discover the next part of the path.
+**Flag:** `pwn.college{AE2UqjMNE0V8xAl7bGn3QchoHcN.0VN0EzNxwSN0AzNzEzW}`
+The solution is a direct application of the Tab completion feature on a command name.
 
-1. Start the Command: Begin by typing the initial part of the path.
+1. Type the Command Prefix: At the command prompt, the known prefix of the command is typed.
 
-2. Navigate with Tab: From the list, the most likely target is pwncollege-flag. This path is built piece by piece:
-Type c and press Tab. The shell auto-completes the path to /challenge/files/pwncollege.
-Type f and press Tab again. The shell auto-completes the full path to /challenge/files/pwncollege-flag.
+2. Use Tab Completion: The Tab key is pressed. The shell searches all directories in the $PATH environment variable for an executable command that starts with "pwncollege" and automatically completes the name.
 
-3. Get the Flag: With the complete and correct path on the command line, press Enter to execute the cat command and display the flag.
+3.  Execute the Command: With the full command name now on the line, pressing Enter executes it, printing the flag to the terminal.
 
 ```bash
-hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwn
-pwn                    pwn-the-planet         pwncollege-flag        pwncollege-flyswatter
-pwn-college            pwncollege-family      pwncollege-flamingo    pwncollege-hacking
-hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwncollege-flag
-pwn.college{0x58U0QQIiPMbr_xX6RGZf1_5iz.0lN0EzNxwSN0AzNzEzW}
+hacker@globbing~tab-completion-on-commands:~$ pwncollege-25109
+Correct! Here is your flag:
+pwn.college{AE2UqjMNE0V8xAl7bGn3QchoHcN.0VN0EzNxwSN0AzNzEzW}
 ```
     
 ### New Learnings
-1. Efficiency and Accuracy: The process of typing just enough characters to create a unique prefix and then pressing Tab is significantly faster and less prone to typos than manually typing long, complex names.
+1. Command Discovery: Using Tab completion on a partial command name is a useful way to discover or remember the full names of tools without having to list the contents of system directories.
 
-2. The "Double-Tab" Feature: The core lesson is the behavior of Tab completion in bash. Pressing Tab once completes to the longest common prefix, while pressing it a second time lists all possibilities. This is a fundamental feature for interactive shell us
+2. Command Completion: The core lesson is that Tab completion works for command names, not just file and directory paths. This is a crucial feature for improving speed and accuracy in the shell.
 
 ### References 
 None

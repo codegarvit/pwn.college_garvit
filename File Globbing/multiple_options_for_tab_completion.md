@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # File GLobbing
 
-# Tab Completion
+# Multiple Tabs for Tab Completion
 This challenge teaches how to handle Tab completion when multiple file or command names match the typed prefix. It explains that in the bash shell, pressing Tab once will auto-complete up to the common part of all matches. Pressing Tab a second time will display a list of all possible completions. The task is to use this "double-tab" technique to navigate a directory structure under /challenge/files, where many files share a common prefix, to find and read the flag file.
 
 ### Solve
