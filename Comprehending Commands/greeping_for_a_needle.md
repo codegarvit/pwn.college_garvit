@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Cat:  Not the Pet,but the Command!
+# Grepping For A Needle In A Haystack
 The challenge involves searching for a flag within a massive text file located at /challenge/data.txt. Using cat would display hundreds of thousands of lines, making it impossible to find the flag manually. The key is to use the grep command to search for a specific pattern. A hint is provided: the flag always starts with "pwn.college".
 
 ### Solve

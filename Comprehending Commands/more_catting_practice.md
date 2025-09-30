@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Cat:  Not the Pet,but the Command!
+# More Catting Practice
 This challenge is similar to the previous one, but the flag is placed in a "crazy directory" with a complex path. The ability to change directories using cd is disabled, forcing the use of cat with an absolute path. The path to the flag is revealed when the challenge starts.
 
 ### Solve

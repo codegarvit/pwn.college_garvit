@@ -1,36 +1,43 @@
 # pwn.college_garvit
 # Digesting Documentation
 
-# Searching Manuals
-This challenge builds on the previous level by introducing the search functionality within man pages. The manual for the challenge program is intentionally populated with numerous decoy options to make manual reading inefficient. The task is to use the search feature (the / key) to quickly locate the specific option that will cause the program to print the flag.
+# Searching For Manuals
+This challenge teaches how to find a manual page when its exact name is unknown. The man page for this level's challenge is hidden with a randomized name. The task is to first learn how to search the manual page database by reading the manual for man itself, use that skill to find the hidden manual, and finally extract the secret option needed to get the flag from the /challenge/challenge program.
 
 ### Solve
 **Flag:** `pwn.college{4BDRWBpyp8kqW5PTa3SkfOKGSzY.QX0ITO0wSN0AzNzEzW}`
 
-The solution involves systematically using the man page's built-in search function to find the needle in the haystack.
-1. Open the Manual: First, the manual for the challenge program is opened.
+The solution requires a multi-step process of learning, searching, and executing, as guided by the challenge prompts.
 
-2. Initiate a Search: Once inside the manual, pressing the / key initiates a forward search. Since the goal is to find the flag, the most logical search term is "flag".
+1. Learning How to Search: The first step is to learn about man's advanced features by running man man. This reveals the -k option, which allows searching for manual pages by keyword.
 
-3. Navigate Results: The initial search results land on general descriptions. Pressing the n key navigates to the next match. After pressing n a few times, the search highlights the following line:
---zzt This argument will give you the Flag!
+2. Finding the Hidden Manual: The -k option is then used with the keyword "challenge" to search the database.
+man -k challenge
+This command reveals the hidden manual's name is lgafnadaet.
 
-4. Execute the Command: After discovering the secret option is --zzt, you quit the manual by pressing q and then run the challenge program with the correct argument.
+3. Discovering the Secret Option: With the correct name found, the hidden manual is read to find the arguments for the program.
+man lgafnadaet
+This manual's DESCRIPTION section specifies that the option --lgafrna with the value 889 will print the flag.
+
+4. Executing the Final Command: HINT 2 of the challenge specifies that the program to run is still /challenge/challenge. The secret option and value are passed to this program to get the flag.
+/challenge/challenge --lgafrna 889
+This command successfully prints the flag: pwn.college{8898lLLg12mAMk2fEnad9ABaWety.QX2EDO0wSN0AzNzEzW}.
 
 ```bash
-hacker@man~searching-manuals:~$ man challenge
-hacker@man~searching-manuals:~$ /challenge/challenge --zzt
-Initializing...
-Correct usage! Your flag: pwn.college{Ez8Wo2X7ddAvyV103FtNKh5plb5.QX1EDO0wSN0AzNzEzW}
+codegarvit@LAPTOP-ECLRKBA4:~$ ssh -i ~/.ssh/pwn_key hacker@dojo.pwn.college
+Connected!
+hacker@man~searching-for-manuals:~$ man man
+hacker@man~searching-for-manuals:~$ man -k challenge
+lgafnadaet (1)       - print the flag!
+hacker@man~searching-for-manuals:~$ man lgafnadaet
+hacker@man~searching-for-manuals:~$ /challenge/challenge --lgafna 889
+Correct usage! Your flag: pwn.college{8898lLg12MaMK2fEnad9ABaWety.QX2EDO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
+1. man -k (Keyword Search): The main lesson is the use of the man -k command (also known as apropos) to search the short descriptions of all manual pages. This is extremely useful when you know what a command does but can't remember its name.
 
-1. Searching in Manuals: The core lesson is how to use the search feature in man pages. Pressing / searches forward, ? searches backward, and n / N navigate to the next/previous match. 
-
-2. Efficient Information Filtering: This challenge demonstrates a practical method for dealing with information overload. Instead of reading every line, you can identify keywords related to your goal and search for them directly.
-
-3. Critical Reading: The exercise reinforces that you must actively look for clues within documentation, as the correct answer is often hidden among irrelevant or misleading information.
+2. Multi-Stage Problem Solving: This challenge demonstrates a common workflow in technical fields: first learn how to use a tool, then use that tool to find necessary information, and finally use that information to solve the actual problem.
 
 ### References 
 None
