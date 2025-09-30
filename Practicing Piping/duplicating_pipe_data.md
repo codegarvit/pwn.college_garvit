@@ -5,7 +5,7 @@
 This challenge introduces the tee command, a tool that acts like a "T-splitter" for command-line pipes. It reads from standard input and writes that data to both standard output and a specified file simultaneously. The task is to use tee to debug a pipeline where one program's output needs to be correctly piped into another.
 
 ### Solve
-**Flag:** `pwn.college{I0hpMZHKWIXp4aYoMjlHyoeulBH.QXxITO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{kTX6l2sbuhYDndA5iogxy67upCx.QX1cDN1wSN0AzNzEzW}`
 Information Gathering: The initial problem is that piping /challenge/pwn directly to /challenge/college fails. To understand why, tee is inserted into the pipeline to capture the output of /challenge/pwn into a file for later inspection.
 
 Bash
@@ -23,20 +23,11 @@ This reveals the usage instructions for the /challenge/pwn program, showing that
 Final Execution: Armed with this new knowledge, a final, correct pipeline is constructed. The /challenge/pwn command is run with its required arguments, and its output (the now-correct secret code) is piped directly into /challenge/college, which processes it and prints the flag.
 
 ```bash
-hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn | tee /tmp/intercept | /challenge/college
-Processing...
-The input to 'college' does not contain the correct secret code! This code
-should be provided by the 'pwn' command. HINT: use 'tee' to intercept the
-output of 'pwn' and figure out what the code needs to be.
-hacker@piping~duplicating-piped-data-with-tee:~$ cat /tmp/intercept
-Usage: /challenge/pwn --secret [SECRET_ARG]
-
-SECRET_ARG should be "I0hpMZHK"
-hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn --secret I0hpMZHK | /challenge/college
-Processing...
-Correct! Passing secret value to /challenge/college...
-Great job! Here is your flag:
-pwn.college{I0hpMZHKWIXp4aYoMjlHyoeulBH.QXxITO0wSN0AzNzEzW}
+hacker@variables~storing-command-output:~$ PWN=$(/challenge/run)
+Congratulations! You have read the flag into the PWN variable. Now print it out
+and submit it!
+hacker@variables~storing-command-output:~$ echo $PWN
+pwn.college{kTX6l2sbuhYDndA5iogxy67upCx.QX1cDN1wSN0AzNzEzW}
 ```
     
 ### New Learnings
