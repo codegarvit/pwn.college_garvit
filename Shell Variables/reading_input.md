@@ -2,42 +2,29 @@
 # Shell Variables
 
 # Reading Input
-This challenge introduces the env command as a method for viewing all exported variables, also known as environment variables. The task is to execute the env command and look through its output to find the value of the pre-set FLAG variable.
+This challenge introduces the read shell builtin, which is used to read a line of text from standard input (the keyboard) and store it into a variable. The task is to use the read command to set a variable named PWN to the specific value COLLEGE.
 
 ### Solve
 **Flag:** `pwn.college{4EAC85o3PvOWKxGuVD7c7qv-jya.QX5UTN0wSN0AzNzEzW}`
-The solution requires using the env command to inspect the shell's environment and locate the specific FLAG variable.
+The solution is an interactive two-step process that involves telling the shell to wait for input and then providing the correct value.
 
-The Goal: The flag is stored in an exported variable named FLAG, which means it's part of the shell's environment and can be seen by other processes.
+1. Initiate the read Command: The first step is to execute the read command, providing the name of the variable where the input should be stored. This tells the shell to pause and wait for the user to type a line of text.
 
-The Tool: The env command is the tool for this task. When run without arguments, it prints a list of all current environment variables and their values to standard output.
 
-Execution: The simplest method is to run the env command and visually scan the output for the line starting with FLAG=.
+2. Provide the Input: The terminal will now be waiting on a new line for input. The user must type the required value, COLLEGE, and then press Enter to submit it. Once Enter is pressed, the shell assigns the typed string "COLLEGE" to the PWN variable, solving the challenge.
 
 
 
 ```bash
-hacker@variables~printing-exported-variables:~$ env
-SHELL=/run/dojo/bin/bash
-HOSTNAME=variables~printing-exported-variables
-PWD=/home/hacker
-MANPATH=/run/dojo/share/man:
-DOJO_AUTH_TOKEN=11530178f795ba4467995d51e2c3ca39ae8d0a5a9365a6c9dfc058941d14156d
-HOME=/home/hacker
-LANG=C.UTF-8
-FLAG=pwn.college{cMMo8ory6_07VhG6iTqcZL3k_v0.QX4UTN0wSN0AzNzEzW}
-TERMINFO=/run/dojo/share/terminfo
-TERM=xterm-256color
-SHLVL=2
-LC_CTYPE=C.UTF-8
-SSL_CERT_FILE=/run/dojo/etc/ssl/certs/ca-bundle.crt
-PATH=/run/challenge/bin:/run/dojo/bin:/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-DEBIAN_FRONTEND=noninteractive
-_=/run/dojo/bin/env
+hacker@variables~reading-input:~$ read PWN
+COLLEGE
+You've set the PWN variable properly! As promised, here is the flag:
+pwn.college{QQw7FQzdzSNuKLe2u_FTVkxYfD3.QX4cTN0wSN0AzNzEzW}
 ```
     
 ### New Learnings
-1. The env Command: The main lesson is the use of the env command to list all exported (environment) variables in the current shell session.
+1. The read Builtin: The primary lesson is how to use the read <VARNAME> command to capture user input from the keyboard and store it in a shell variable. This is a fundamental tool for creating interactive shell scripts.
 
+2. Standard Input (stdin): This challenge demonstrates the default behavior of standard input, which is to read from the keyboard. While previous challenges showed how to redirect a file into stdin with <, this shows how commands read from it interactively.
 ### References 
 None
