@@ -1,48 +1,47 @@
 # pwn.college_garvit
 # Praciting Piping
 
-# Names Pipes
-This challenge introduces the pipe operator (|), a core feature of the shell that allows you to connect the output of one command directly to the input of another. This avoids the need for a temporary file, creating a more efficient and elegant workflow.
+# Named Pipes
+This challenge introduces named pipes, also known as FIFOs (First In, First Out), which are created with the mkfifo command. These are special files that allow processes to communicate. The task is to create a FIFO, redirect the /challenge/run program's output into it, and read that output to get the flag. The challenge's key difficulty is managing the "blocking" behavior of FIFOs, which requires coordinating a reader and a writer process, typically in two separate terminals.
 
 ### Solve
-**Flag:** `pwn.college{4F8I6-jlpNMdogPRXf8g4CxfbJH.QX5EDO0wSN0AzNzEzW}`
-The solution involves constructing a single command that "pipes" the live output from the /challenge/run program directly into the grep command for real-time filtering. This replaces the two-step "save then search" method from the previous level.
+**Flag:** `pwn.college{4uo3UdRLbxf4Sv0ruEtMVQLS6yz.01MzMDOxwSN0AzNzEzW}`
+The solution requires using two terminals to manage the synchronized, blocking nature of the named pipe. One terminal acts as the "reader," and the other acts as the "writer."
 
-1. The "Producer" Command: The command that generates the data, /challenge/run, is placed on the left side of the pipe. When executed, it begins writing its hundreds of thousands of lines of text to its standard output.
+1. Create the FIFO: The first step, performed in first terminal, is to create the named pipe file at the specified location.
+mkfifo /tmp/flag_fifo
 
-2. The "Consumer" Command: The command that processes the data, grep, is placed on the right side of the pipe. It's given the search pattern pwn.college to look for the flag.
+2. Start the Reader: In the first terminal, a command is run to read from the FIFO. The cat command is a simple and effective choice. After this command is executed, the terminal will block (hang), waiting for a writer to send data to the pipe.
+cat /tmp/flag_fifo
 
-3. Connecting with the Pipe: The pipe operator (|) is placed between the two commands. It takes the standard output from /challenge/run and connects (or "pipes") it directly to the standard input of grep.
+3. Start the Writer: In a second, separate terminal, the /challenge/run program is executed with its standard output redirected to the same FIFO.
+/challenge/run > /tmp/flag_fifo
 
+4. Get the Flag: As soon as the command in Terminal 2 is executed, the connection is complete and the pipe unblocks. The /challenge/run program writes the flag into the pipe, and the waiting cat command in Terminal 1 reads the flag and prints it to the screen.
+
+# Terminal 1:
 ```bash
-hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
-[INFO] WELCOME! This challenge makes the following asks of you:
-[INFO] - the challenge checks for a specific process at the other end of stdout : grep
-[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+hacker@piping~named-pipes:~$ mkfifo /tmp/flag_fifo
+hacker@piping~named-pipes:~$ cat /tmp/flag_fifo
+You've correctly redirected /challenge/run's stdout to a FIFO at
+/tmp/flag_fifo! Here is your flag:
+pwn.college{4uo3UdRLbxf4Sv0ruEtMVQLS6yz.01MzMDOxwSN0AzNzEzW}
+```
 
-[HYPE] ONWARDS TO GREATNESS!
-
-[INFO] This challenge will perform a bunch of checks.
-[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
-
-[TEST] You should have redirected my stdout to another process. Checking...
-[TEST] Performing checks on that process!
-
-[INFO] The process' executable is /nix/store/8b4vn1iyn6kqiisjvlmv67d1c0p3j6wj-gnugrep-3.11/bin/grep.
-[INFO] This might be different than expected because of symbolic links (for example, from /usr/bin/python to /usr/bin/python3 to /usr/bin/python3.8).
-[INFO] To pass the checks, the executable must be grep.
-
-[PASS] You have passed the checks on the process on the other end of my stdout!
-[PASS] Success! You have satisfied all execution requirements.
-pwn.college{4F8I6-jlpNMdogPRXf8g4CxfbJH.QX5EDO0wSN0AzNzEzW}
+# Terminal 1:
+```bash
+hacker@piping~named-pipes:~$ /challenge/run > /tmp/flag_fifo
+You're successfully redirecting /challenge/run to a FIFO at /tmp/flag_fifo!
+Bash will now try to open the FIFO for writing, to pass it as the stdout of
+/challenge/run. Recall that operations on FIFOs will *block* until both the
+read side and the write side is open, so /challenge/run will not actually be
+launched until you start reading from the FIFO!
 ```
     
 ### New Learnings
-1. The Pipe Operator (|): The primary lesson is the use of the pipe operator to chain commands together, feeding the standard output of one command into the standard input of the next. This is one of the most powerful concepts in the shell.
+1. Creating Named Pipes (mkfifo): The primary lesson is the use of the mkfifo command to create a persistent named pipe, a special file that can be used for inter-process communication.
 
-2. Live Filtering: Piping allows for the real-time filtering of a command's output. This is extremely useful for searching through logs, monitoring processes, or any task where you need to find specific information within a large or continuous stream of data.
-
-3. Efficiency: Using pipes is more efficient than using temporary files because the data is passed between processes in memory, avoiding the slower process of writing to and reading from a disk. It also simplifies commands and avoids the need to clean up temporary files.
+2. FIFO Blocking Behavior: This challenge provides a hands-on demonstration of a key feature of FIFOs: they block write operations until a read operation opens the other end, and vice-versa. This is a form of automatic process synchronization.
 
 ### References 
 None
