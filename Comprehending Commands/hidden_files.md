@@ -1,26 +1,32 @@
 # pwn.college_garvit
 # Comprehending Commands
 
-# Cat:  Not the Pet,but the Command!
-The challenge illustrates the uses of the cat command.The primary purpose of cat is to read the contents of files and display them in the terminal.
-It can also concatenate multiple files and show them sequentially, or even read from the terminal if no file is given.
+# hidden Files
+This challenge introduces the concept of "hidden" files in Linux, which are files whose names begin with a dot (.). These files are not displayed by the ls command by default. The task is to use the -a flag with ls to find a hidden flag file in the root directory (/) and then read its contents.
 
 ### Solve
 **Flag:** `pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}`
 
-To solve this challenge, the task was to read the contents of a file called flag that was placed in the home directory. The cat command was used to display the file’s contents, successfully returning the flag.
+The solution is a two-step process: first, discover the hidden filename, and second, read the contents of that file.
+
+1. Finding the Hidden File: The prompt explains that the ls command needs the -a (all) flag to show hidden files. This flag is used to list the contents of the root directory (/).
+
+2. This command's output reveals all files, including the hidden flag file, which was named flag-180601817825851.
+
+3. Reading the Flag: Once the full name of the hidden file is known, the cat command is used with the file's absolute path to display its contents, which is the flag.
 
 ```bash
-hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
-pwn.college{goryZNX3x92aQFH0bPLstxZtNbH.QXxcTN0wSN0AzNzEzW}
+hacker@commands~hidden-files:~$ ls -a /
+.   .dockerenv             bin   challenge  etc   lib    lib64   media  nix  proc  run   srv  tmp  var
+..  .flag-180601817825851  boot  dev        home  lib32  libx32  mnt    opt  root  sbin  sys  usr
+hacker@commands~hidden-files:~$ cat /.flag-180601817825851
+pwn.college{449TLA3JLDtYHEMTWUXPd3FhEA8.QXwUDO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
+1. Hidden Files (Dotfiles): The primary lesson is the convention in Linux where prefixing a filename with a dot (.) makes it "hidden" from default listings. These are often used for user-specific configuration files (e.g., .bashrc).
 
-I learned the following concepts about the cat command in Linux:
-1. Cat displays the contents of files directly in the terminal.
-2. Multiple files can be provided as arguments, and their contents will be concatenated in order.
-3. If no arguments are given, cat will read from the terminal input and output it.
+2. The ls -a Command: The challenge directly teaches the use of the -a flag for the ls command, which is the standard way to make hidden dotfiles visible in a directory listing.
 
 ### References 
 None

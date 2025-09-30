@@ -29,5 +29,6 @@ pwn.college{UdOvxhRUWFQHtIbvoBPYTjlAtS7.QXwMDO0wSN0AzNzEzW}
 2. Creating Multiple Files: The touch command can create multiple files at once by simply listing them as space-separated arguments.
 
 3. The /tmp Directory: This challenge uses the /tmp directory, a standard location in Linux/Unix filesystems for storing temporary files that don't need to persist after a system reboot.
+
 ### References 
 None
