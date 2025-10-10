@@ -2,36 +2,39 @@
 # Processes and Jobs
 
 # Resuming Processes
-This challenge teaches how to "list running processes" using the ps command. For this challenge, a program has been "renamed /challenge/run to a random filename" and has already been "launched," so you must find it in the "running process list" to get the flag.
+This challenge teaches how to resume a suspended process using the fg command, a shell builtin that takes a suspended process and puts it back in the foreground of your terminal. 
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{gbDS8DUayxgMFYa_hlc42mqKt5r.QX2QDO0wSN0AzNzEzW}`
 
-The solution requires using ps to find the full path of the hidden running process and then running that path to get the flag.
+1. The Goal: The challenge requires a specific sequence of actions: the /challenge/run program must first be suspended and then resumed.
 
-1. The Goal: The challenge is to find a program that is already running but has a random name, so it can't be found with ls. The only way to find it is to look at the list of all running processes.
+2. The Tools: This process uses two shell features working together:
+ - The ctrl-z hotkey is used to "suspend" the running process.
+ - The fg command is used to "resume" it.
 
-2. The Tool: The ps command with arguments like aux is used to list processes for "all users" in a "user-readable" format. To prevent the output from being cut short, the ww option can be added to make ps auxww.
-
-3. Finding the Process: To find the running program, you run the ps command and look through the COMMAND column for a process located in the /challenge/ directory.
-The output shows the randomly named process: /challenge/2780-run-30570.
-
-4. To finish the challenge, we launch the program by running the full path that we discovered.
-
+3. The Process:
+ - First, the program is launched in the terminal.
+ - While it is running, the ctrl-z hotkey is pressed. This pauses the process and puts it in the background.
+ - Finally, the fg command is run. This brings the suspended process back to the foreground and resumes its execution.
 
 ```bash
-hacker@processes~listing-processes:~$ /challenge/2780-run-30570
-Yahaha, you found me! Here is your flag:
-pwn.college{09hxr3aCnMTWKoQ-pptsTjTwmjZ.QX4MDO0wSN0AzNzEzW}
-Now I will sleep for a while (so that you could find me with 'ps').
+hacker@processes~resuming-processes:~$ /challenge/run
+Let's practice resuming processes! Suspend me with Ctrl-Z, then resume me with
+the 'fg' command! Or just press Enter to quit me!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~resuming-processes:~$ fg
+/challenge/run
+I'm back! Here's your flag:
+pwn.college{gbDS8DUayxgMFYa_hlc42mqKt5r.QX2QDO0wSN0AzNzEzW}
+Don't forget to press Enter to quit me!
 ```
     
 ### New Learnings
-1. The ps command: The main lesson is using ps aux or ps -ef to see a detailed list of all processes currently running on the system.
+1. The fg Command: The main lesson is the use of the fg command to take a suspended process, resume it, and put it back in the foreground of your terminal.
 
-2. Process Information: The output of ps provides useful information about each process, like its PID (Process ID) and the full COMMAND used to start it.
-
-3. Finding Running Programs: This challenge shows how ps is a powerful tool for finding and identifying running programs, even when you don't know their name or exact location.
+2. Foreground Processes: A process in the foreground is the one that is currently active and can receive input from your keyboard. The fg command is used to select which suspended process becomes the active one.
 
 ### References 
 None

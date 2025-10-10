@@ -2,10 +2,10 @@
 # Processes and Jobs
 
 # Foregrounding Processes
-This challenge teaches how to "list running processes" using the ps command. For this challenge, a program has been "renamed /challenge/run to a random filename" and has already been "launched," so you must find it in the "running process list" to get the flag.
+This challenge teaches how to list running processes using the ps command. For this challenge, a program has been renamed /challenge/run to a random filename and has already been launched, so you must find it in the running process list to get the flag.
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{oZSNDeiCZN82a8kqIeTECv1ZUpA.QX4QDO0wSN0AzNzEzW}`
 
 The solution requires using ps to find the full path of the hidden running process and then running that path to get the flag.
 
@@ -20,10 +20,27 @@ The output shows the randomly named process: /challenge/2780-run-30570.
 
 
 ```bash
-hacker@processes~listing-processes:~$ /challenge/2780-run-30570
-Yahaha, you found me! Here is your flag:
-pwn.college{09hxr3aCnMTWKoQ-pptsTjTwmjZ.QX4MDO0wSN0AzNzEzW}
-Now I will sleep for a while (so that you could find me with 'ps').
+hacker@processes~foregrounding-processes:~$ /challenge/run
+To pass this level, you need to suspend me, resume the suspended process in the
+background, and *then* foreground it without re-suspending it! You can
+background me with Ctrl-Z (and resume me in the background with 'bg') or, if
+you're not ready to do that for whatever reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~foregrounding-processes:~$ bg
+[1]+ /challenge/run &
+hacker@processes~foregrounding-processes:~$
+
+
+Yay, I'm now running the background! Because of that, this text will probably
+overlap weirdly with the shell prompt. Don't panic; just hit Enter a few times
+to scroll this text out. After that, resume me into the foreground with 'fg';
+I'll wait.
+fg
+/challenge/run
+YES! Great job! I'm now running in the foreground. Hit Enter for your flag!
+
+pwn.college{oZSNDeiCZN82a8kqIeTECv1ZUpA.QX4QDO0wSN0AzNzEzW}
 ```
     
 ### New Learnings
