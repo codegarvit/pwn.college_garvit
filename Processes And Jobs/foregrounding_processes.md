@@ -2,22 +2,20 @@
 # Processes and Jobs
 
 # Foregrounding Processes
-This challenge teaches how to list running processes using the ps command. For this challenge, a program has been renamed /challenge/run to a random filename and has already been launched, so you must find it in the running process list to get the flag.
+This challenge teaches how to take a backgrounded process and foreground it using the fg command. The task is to launch the challenge program, suspend it, resume it in the background, and then finally bring it back to the foreground to get the flag.
 
 ### Solve
 **Flag:** `pwn.college{oZSNDeiCZN82a8kqIeTECv1ZUpA.QX4QDO0wSN0AzNzEzW}`
 
-The solution requires using ps to find the full path of the hidden running process and then running that path to get the flag.
+1. The Goal: The program's instructions state, "To pass this level, you need to suspend me, resume the suspended process in the background, and then foreground it".
 
-1. The Goal: The challenge is to find a program that is already running but has a random name, so it can't be found with ls. The only way to find it is to look at the list of all running processes.
+2. The Process:
+ - First, the program is launched.
+ - Second, the Ctrl-Z hotkey is pressed to "suspend" the process. The terminal shows ^Z and a "Stopped" message.
+ - Third, the bg command is used to resume the process so it is running the background.
+ - Finally, the fg command is used to resume into the foreground.
 
-2. The Tool: The ps command with arguments like aux is used to list processes for "all users" in a "user-readable" format. To prevent the output from being cut short, the ww option can be added to make ps auxww.
-
-3. Finding the Process: To find the running program, you run the ps command and look through the COMMAND column for a process located in the /challenge/ directory.
-The output shows the randomly named process: /challenge/2780-run-30570.
-
-4. To finish the challenge, we launch the program by running the full path that we discovered.
-
+3. The Result: When the process is brought back to the foreground, it prints "YES! Great job! I'm now running in the foreground," followed by the flag.
 
 ```bash
 hacker@processes~foregrounding-processes:~$ /challenge/run
@@ -41,14 +39,11 @@ fg
 YES! Great job! I'm now running in the foreground. Hit Enter for your flag!
 
 pwn.college{oZSNDeiCZN82a8kqIeTECv1ZUpA.QX4QDO0wSN0AzNzEzW}
+hacker@processes~foregrounding-processes:~$ client_loop: send disconnect: Broken pipe
 ```
     
 ### New Learnings
-1. The ps command: The main lesson is using ps aux or ps -ef to see a detailed list of all processes currently running on the system.
-
-2. Process Information: The output of ps provides useful information about each process, like its PID (Process ID) and the full COMMAND used to start it.
-
-3. Finding Running Programs: This challenge shows how ps is a powerful tool for finding and identifying running programs, even when you don't know their name or exact location.
+1. The fg Command: The main lesson is that the fg command can be used to bring a process that is "running the background" back into the "foreground," giving you control of it again.
 
 ### References 
 None
