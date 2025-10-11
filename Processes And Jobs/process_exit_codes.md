@@ -2,36 +2,33 @@
 # Processes and Jobs
 
 # Process Exit Codes
-This challenge teaches how to "list running processes" using the ps command. For this challenge, a program has been "renamed /challenge/run to a random filename" and has already been "launched," so you must find it in the "running process list" to get the flag.
+This challenge explains that every command exits with an exit code to show if it succeeded (usually 0) or failed (a non-zero value).We can access the exit code of the most recently-terminated command using the special ? variable" (as $?).
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{Axrkdlokqsb8o_NDNWusJKGew3z.QX5YDO1wSN0AzNzEzW}`
 
-The solution requires using ps to find the full path of the hidden running process and then running that path to get the flag.
+The solution is a two-step process: first run the program that generates the exit code, then immediately run the second program, using the $? variable to pass the code as an argument.
 
-1. The Goal: The challenge is to find a program that is already running but has a random name, so it can't be found with ls. The only way to find it is to look at the list of all running processes.
+The Goal: You need to get the "exit code" from /challenge/get-code and use it as an "argument" for /challenge/submit-code.
 
-2. The Tool: The ps command with arguments like aux is used to list processes for "all users" in a "user-readable" format. To prevent the output from being cut short, the ww option can be added to make ps auxww.
+The Process:
 
-3. Finding the Process: To find the running program, you run the ps command and look through the COMMAND column for a process located in the /challenge/ directory.
-The output shows the randomly named process: /challenge/2780-run-30570.
-
-4. To finish the challenge, we launch the program by running the full path that we discovered.
-
+First, the /challenge/get-code program is run. It exits and sets the special $? variable to its exit code.
+Second, the /challenge/submit-code program is run immediately after. The shell sees $?, replaces it with the exit code from the previous command, and passes it as the argument.
+The Result: The /challenge/submit-code program receives the correct code and prints the flag.
 
 ```bash
-hacker@processes~listing-processes:~$ /challenge/2780-run-30570
-Yahaha, you found me! Here is your flag:
-pwn.college{09hxr3aCnMTWKoQ-pptsTjTwmjZ.QX4MDO0wSN0AzNzEzW}
-Now I will sleep for a while (so that you could find me with 'ps').
+hacker@processes~process-exit-codes:~$ /challenge/get-code
+Exiting with an error code!
+hacker@processes~process-exit-codes:~$ /challenge/submit-code $?
+CORRECT! Here is your flag:
+pwn.college{Axrkdlokqsb8o_NDNWusJKGew3z.QX5YDO1wSN0AzNzEzW}
 ```
     
 ### New Learnings
-1. The ps command: The main lesson is using ps aux or ps -ef to see a detailed list of all processes currently running on the system.
+1. The $? Variable: The main lesson is the use of the "special ? variable", which you access as $? to read its value. It always contains the exit code of the most recently-terminated command.
 
-2. Process Information: The output of ps provides useful information about each process, like its PID (Process ID) and the full COMMAND used to start it.
-
-3. Finding Running Programs: This challenge shows how ps is a powerful tool for finding and identifying running programs, even when you don't know their name or exact location.
+2. Meaning of Exit Codes: Commands use exit codes to report their status. A 0 typically means the command "succeeded", while a non-zero value means it "fail[ed]".
 
 ### References 
 None

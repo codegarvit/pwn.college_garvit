@@ -5,7 +5,7 @@
 This challenge teaches how to "start them backgrounded right off the bat" without needing to suspend a process first. The method is to "append a & to the command".
 
 ### Solve
-**Flag:** `pwn.college{krHw_DxbzcY0-AIl-xWFhchNDUw.QXzIDO0wSN0AzNzEzW}`
+**Flag:** `pwn.college{M4zasNKlJCS-M-3TObXUszwmtLw.QX5QDO0wSN0AzNzEzW} `
 
 The solution requires running the challenge program with the ampersand (&) character at the end of the command.
 

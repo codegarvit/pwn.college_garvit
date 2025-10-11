@@ -4,8 +4,6 @@
 # Filtering With Grep -v
 This challenge introduces the -v (invert match) option for the grep command, which shows lines that do not match a pattern. The task is to filter the output of a program that produces over a thousand decoy flags alongside the one real flag. The decoy flags are identifiable because they all contain the word "DECOY".
 
- 
-
 ### Solve
 **Flag:** `pwn.college{AxaZOXasPEWq2HAI5sUQBquy38C.0FOxEzNxwSN0AzNzEzW}`
 The solution requires piping the program's output to grep and using the -v option to exclude the decoy flags. Instead of trying to find the one line that is the real flag, the logic is inverted: we remove all the lines that we know are decoys.
