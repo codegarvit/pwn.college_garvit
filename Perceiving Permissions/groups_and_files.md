@@ -1,7 +1,7 @@
 # pwn.college_garvit
 # Perceiving Permissions
 
-# Changing File Ownership
+# Groups And Files  
 This challenge covers file ownership and the chown (change owner) command. The /flag file is owned by the root user, which prevents us from reading it as the hacker user. The task is to practice changing the owner of the /flag file to the hacker user, and then read the flag.
 
 ### Solve
